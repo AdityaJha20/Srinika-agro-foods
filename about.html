@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Our Story & Policies | Mamafarm</title>
+  <meta name="description" content="Discover the story behind Mamafarm. Born from a mother's search for natural remedies, we offer pure unadulterated organic honey, traditional pickles, and vinegar.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <style>
+    .policy-section {
+      background-color: var(--white);
+      padding: 40px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 40px;
+    }
+    .policy-section h2 {
+      font-family: var(--font-headings);
+      color: var(--primary);
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+    .policy-section p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .policy-section ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .policy-section li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-announcement-bar">
+    <div class="container top-ann-container">
+      <div class="social-links">
+        <a href="#" class="social-icon-link" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" class="social-icon-link" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="#" class="social-icon-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+      
+      <div class="ticker-wrapper" id="announcement-ticker">
+        <div class="ticker-item">🎉 Free Shipping Above ₹499</div>
+        <div class="ticker-item">🌿 Get 10% Off On First Order</div>
+        <div class="ticker-item">✨ Save Up To 25% On Combo Packs</div>
+      </div>
+      
+      <div style="width: 80px;"></div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="Mama Farm" class="logo-img">
+      </a>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <form class="search-form" id="header-search-form">
+          <svg class="search-btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-input" id="header-search-input" placeholder="Search pickles, honey, ready-to-eat..." autocomplete="off">
+        </form>
+        <div class="search-suggestions-dropdown" id="search-suggestions"></div>
+      </div>
+
+      <div class="header-utilities">
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        
+        <a href="about.html" class="utility-btn" aria-label="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+        <a href="shop.html?wishlist=true" class="utility-btn" aria-label="Wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </a>
+        <div class="cart-btn-wrapper" id="cart-drawer-trigger" onclick="showCartDrawer()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="header-cart-total">₹0</span>
+          <span class="cart-count-badge">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION MENU -->
+  <nav class="nav-menu">
+    <div class="container nav-container">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item">
+          <a href="shop.html" class="nav-link">Categories ▾</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="shop.html?category=pickles">Pickles</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=chutneys">Chutneys</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=ready-to-eat">Ready To Eat</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=frozen-snacks">Frozen Snacks</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=combos">Combos</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=gift-packs">Gift Packs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link active">About Us</a></li>
+        <li class="nav-item"><a href="recipes.html" class="nav-link">Recipes</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Where To Buy</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="modal-overlay" id="mobile-drawer-overlay"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Mama Farm" class="logo-img">
+      </div>
+      <button class="mobile-drawer-close" id="mobile-drawer-close">&times;</button>
+    </div>
+    <div class="mobile-drawer-body">
+      <div class="mobile-nav-list">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="shop.html" class="mobile-nav-link">Shop</a>
+        <div class="mobile-nav-item">
+          <h4>Categories</h4>
+          <div class="mobile-nav-sublist">
+            <a href="shop.html?category=pickles" class="mobile-nav-sublink">Pickles</a>
+            <a href="shop.html?category=chutneys" class="mobile-nav-sublink">Chutneys</a>
+            <a href="shop.html?category=ready-to-eat" class="mobile-nav-sublink">Ready To Eat</a>
+            <a href="shop.html?category=frozen-snacks" class="mobile-nav-sublink">Frozen Snacks</a>
+            <a href="shop.html?category=combos" class="mobile-nav-sublink">Combos</a>
+            <a href="shop.html?category=gift-packs" class="mobile-nav-sublink">Gift Packs</a>
+          </div>
+        </div>
+        <a href="about.html" class="mobile-nav-link">About Us</a>
+        <a href="recipes.html" class="mobile-nav-link">Recipes</a>
+        <a href="contact.html" class="mobile-nav-link">Where To Buy</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART DRAWER -->
+  <div class="modal-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Cart</h3>
+      <button class="cart-drawer-close" onclick="hideCartDrawer()">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div class="shipping-meter">
+        <div class="shipping-meter-text" id="shipping-progress-text">Add items to get Free Shipping above ₹499!</div>
+        <div class="shipping-meter-bar">
+          <div class="shipping-meter-progress" id="shipping-progress"></div>
+        </div>
+      </div>
+      <div id="cart-drawer-items"></div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal:</span>
+        <span id="cart-checkout-subtotal">₹0</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="cart-checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="container">
+      <h1>Our Story</h1>
+      <p>Unadulterated raw honey and traditional sun-cured pickles. Born from a mother's search for wellness.</p>
+    </div>
+  </section>
+
+  <!-- STORY DETAILS -->
+  <section class="section-padding">
+    <div class="container">
+      
+      <!-- Block 1 -->
+      <div class="story-block reveal-on-scroll">
+        <div class="story-image-box">
+          <img src="assets/images/hero_organic_foods.png" alt="Founder storytelling">
+        </div>
+        <div class="story-text">
+          <h2>A Mother's Mission</h2>
+          <p>During the early years of my daughter, it was a regular routine of mine to visit doctors because of cough, fever, and sore throat. Standard medicines immediately treat the symptoms but do not allow the child's natural immunity system to build properly.</p>
+          <p>Desperate for a natural alternative, I remembered my grandmother's advice: <em>a teaspoon of pure, unadulterated honey can cure organically and boost the immunity system in children above 3 years of age.</em></p>
+          <p>Fascinated by her rapid recovery after a spoonful of raw, local honey, I started learning more about the remarkable antibacterial and anti-inflammatory properties that make honey a natural remedy for sore throats and minor ailments.</p>
+        </div>
+      </div>
+
+      <!-- Block 2 -->
+      <div class="story-block reverse reveal-on-scroll">
+        <div class="story-image-box">
+          <img src="assets/images/about_hero.jpg" alt="Organic Honey Farming">
+        </div>
+        <div class="story-text">
+          <h2>Sharing Nature's Remedy</h2>
+          <p>What began as a personal mission to comfort my sick child organically evolved into a source of wellness for my entire family. After traveling extensively in search of pure, unadulterated honey, I eventually built a thriving organic honey and food business to share nature's remedies with others.</p>
+          <p><strong>Mamafarm</strong> is a premium wellness brand owned and marketed by <strong>Srinika Agro Foods</strong>. We specialize in organic, unadulterated honey, sun-cured traditional pickles, and naturally brewed vinegar. Our diverse product range is inspired by uncompromising quality and great taste.</p>
+        </div>
+      </div>
+
+      <!-- Mission Statement -->
+      <div class="mission-block reveal-on-scroll">
+        <h2>Our Mission</h2>
+        <p>"To share nature's remedy with others and to make delicious food that's better for you!"</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POLICIES SECTIONS -->
+  <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--gray-light);">
+    <div class="container" style="max-width: 900px;">
+      <div class="section-title-wrapper text-center" style="margin-bottom: 60px;">
+        <h2 class="section-title">Mamafarm Brand Policies</h2>
+        <p class="section-subtitle">Read our terms, conditions, shipping, and refund processes.</p>
+      </div>
+
+      <!-- Privacy Policy -->
+      <div class="policy-section reveal-on-scroll" id="privacy">
+        <h2>Privacy Policy</h2>
+        <p>By mere use of the website, you expressly consent to our collection, use, and disclosure of your personal information, including but not limited to your consent for sharing your information. If you do not agree, please do not use or access our Site.</p>
+        <p>We do not collect or store credit card, debit card, or any of your banking information, as it is directly transmitted through our secure payment gateway provider to the payment network or bank.</p>
+        <p><em>Note:</em> Our privacy policy may change at any time without notice. To make sure you are aware of any changes, kindly review this policy periodically.</p>
+      </div>
+
+      <!-- Refund Policy -->
+      <div class="policy-section reveal-on-scroll" id="refund">
+        <h2>Refund & Return Policy</h2>
+        <p><strong>Product returns:</strong> Once products are delivered to you and accepted as accurately and as per the original order, there is no refund or exchange possible. To return any items that are damaged, expired, or not as per your original order, please return these products to the delivery person along with a remark on the delivery challan.</p>
+        <p>Please contact customer service by email (srinikaagrofoods@gmail.com) through the contact us link on the website within 24 hours of delivery. Mention the return of products along with the order number, and the date of delivery along with supporting images and videos. These must include an image of the shipping label and invoice.</p>
+        <p>All returned items must be accompanied by a copy of the original receipt, a return/exchange authorization number, and must be in unopened, saleable condition. Images of the condition of the package upon receipt by you shall always be an added benefit to expedite claims at our end. Postage and handling charges for returns will not be refunded. Please note that we cannot offer exchanges or refunds on any sale, opened, or used products. Please allow one to three weeks from the day you return your package for your refund request to be processed. You will be contacted once your return is complete.</p>
+      </div>
+
+      <!-- Shipping Policy -->
+      <div class="policy-section reveal-on-scroll" id="shipping">
+        <h2>Shipping & Delivery Policy</h2>
+        <p><strong>Shipment of Products:</strong> We offer free shipping for all pre-paid purchases. Cash on Delivery (COD) transactions will be charged a standard Rs.30/- handling fee. Discount codes are not applicable to products that are already on sale.</p>
+        <p><strong>Delivery Charges:</strong> Shipping and handling rates may vary based on product, packaging, size, volume, type, and other considerations. The shipping and handling charges are given at the time of check out, and consumers will know about this before making payments.</p>
+      </div>
+
+      <!-- Terms and Conditions -->
+      <div class="policy-section reveal-on-scroll" id="terms">
+        <h2>Terms & Conditions</h2>
+        <p>Welcome to Mamafarm. These terms and conditions outline the rules and regulations for the use of Srinika Agro Foods' Website, located at www.Srinikaagrofoods.in.</p>
+        <p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use Mamafarm if you do not agree to take all of the terms and conditions stated on this page.</p>
+        <ul>
+          <li>We reserve the right to request that you remove all links or any particular link to our Website.</li>
+          <li>All product prices, descriptions, and stocks are subject to change without notice.</li>
+          <li>Products sold on Mamafarm are intended for retail consumption and not for unauthorized commercial resale.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="grid footer-grid">
+        <div>
+          <h3 class="footer-col-title">Our Story</h3>
+          <p class="footer-brand-story">What began as a mother's personal mission to comfort her sick child organically with raw, local honey evolved into Mamafarm—a wellness D2C food brand. We specialize in organic, unadulterated honey, sun-dried pickles, and vinegar.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-icon" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="footer-col-title">Quick Links</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shop.html">Shop Catalog</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="contact.html">Where to Buy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Policies</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html#privacy">Privacy Policy</a></li>
+            <li><a href="about.html#refund">Refund Policy</a></li>
+            <li><a href="about.html#shipping">Shipping Policy</a></li>
+            <li><a href="about.html#terms">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Contact Us</h3>
+          <div class="footer-contact-info">
+            <p><strong>Address:</strong> Srinika Agro Foods, P-309, Hari Sava Math, Kolkata, WB - 700070</p>
+            <p><strong>Phone:</strong> +91 74398 77939</p>
+            <p><strong>Email:</strong> srinikaagrofoods@gmail.com</p>
+            <p><strong>Hours:</strong> Mon - Fri, 9:30 AM - 6:30 PM</p>
+          </div>
+          <div class="license-info">
+            FSSAI LIC NO: <strong>22823043000076</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom-bar">
+      <div class="container footer-bottom-container">
+        <span>Copyright &copy; 2026 Mamafarm. All Rights Reserved.</span>
+        <span>Owned & Marketed by Srinika Agro Foods. Powered by Mamafarm D2C.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CART BAR -->
+  <div class="mobile-sticky-cart-bar">
+    <button class="btn btn-primary btn-block" onclick="showCartDrawer()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span>View Cart (<span class="cart-count-badge">0</span>)</span>
+    </button>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

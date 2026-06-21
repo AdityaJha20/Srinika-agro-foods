@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mamafarm | Premium Packaged Foods & Organic Honey</title>
+  <meta name="description" content="Discover Mamafarm's authentic pickles, raw unadulterated honey, Jamun vinegar, chutneys, and frozen snacks. Curated traditional taste, ready in minutes.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-announcement-bar">
+    <div class="container top-ann-container">
+      <div class="social-links">
+        <a href="https://instagram.com" class="social-icon-link" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://facebook.com" class="social-icon-link" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="https://linkedin.com" class="social-icon-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+      
+      <div class="ticker-wrapper" id="announcement-ticker">
+        <div class="ticker-item">🎉 Free Shipping Above ₹499</div>
+        <div class="ticker-item">🌿 Get 10% Off On First Order</div>
+        <div class="ticker-item">✨ Save Up To 25% On Combo Packs</div>
+      </div>
+      
+      <div style="width: 80px;"></div> <!-- Spacer to center ticker on desktop -->
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="main-header">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="Mama Farm" class="logo-img">
+      </a>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <form class="search-form" id="header-search-form">
+          <svg class="search-btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-input" id="header-search-input" placeholder="Search pickles, honey, ready-to-eat..." autocomplete="off">
+        </form>
+        <div class="search-suggestions-dropdown" id="search-suggestions"></div>
+      </div>
+
+      <!-- Utilities -->
+      <div class="header-utilities">
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        
+        <a href="about.html" class="utility-btn" aria-label="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+        <a href="shop.html?wishlist=true" class="utility-btn" aria-label="Wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </a>
+        <div class="cart-btn-wrapper" id="cart-drawer-trigger" onclick="showCartDrawer()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="header-cart-total">₹0</span>
+          <span class="cart-count-badge">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION MENU -->
+  <nav class="nav-menu">
+    <div class="container nav-container">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item">
+          <a href="shop.html" class="nav-link">Categories ▾</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="shop.html?category=honey">Pickles</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=chutneys">Chutneys</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=ready-to-eat">Ready To Eat</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=frozen-snacks">Frozen Snacks</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=combos">Combos</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=gift-packs">Gift Packs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+        <li class="nav-item"><a href="recipes.html" class="nav-link">Recipes</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Where To Buy</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="modal-overlay" id="mobile-drawer-overlay"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Mama Farm" class="logo-img">
+      </div>
+      <button class="mobile-drawer-close" id="mobile-drawer-close">&times;</button>
+    </div>
+    <div class="mobile-drawer-body">
+      <div class="mobile-nav-list">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="shop.html" class="mobile-nav-link">Shop</a>
+        <div class="mobile-nav-item">
+          <h4>Categories</h4>
+          <div class="mobile-nav-sublist">
+            <a href="shop.html?category=pickles" class="mobile-nav-sublink">Pickles</a>
+            <a href="shop.html?category=chutneys" class="mobile-nav-sublink">Chutneys</a>
+            <a href="shop.html?category=ready-to-eat" class="mobile-nav-sublink">Ready To Eat</a>
+            <a href="shop.html?category=frozen-snacks" class="mobile-nav-sublink">Frozen Snacks</a>
+            <a href="shop.html?category=combos" class="mobile-nav-sublink">Combos</a>
+            <a href="shop.html?category=gift-packs" class="mobile-nav-sublink">Gift Packs</a>
+          </div>
+        </div>
+        <a href="about.html" class="mobile-nav-link">About Us</a>
+        <a href="recipes.html" class="mobile-nav-link">Recipes</a>
+        <a href="contact.html" class="mobile-nav-link">Where To Buy</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART DRAWER -->
+  <div class="modal-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Cart</h3>
+      <button class="cart-drawer-close" onclick="hideCartDrawer()">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <!-- Free Shipping progress bar -->
+      <div class="shipping-meter">
+        <div class="shipping-meter-text" id="shipping-progress-text">Add items to get Free Shipping above ₹499!</div>
+        <div class="shipping-meter-bar">
+          <div class="shipping-meter-progress" id="shipping-progress"></div>
+        </div>
+      </div>
+      <!-- Items list container -->
+      <div id="cart-drawer-items"></div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal:</span>
+        <span id="cart-checkout-subtotal">₹0</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="cart-checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-slider">
+    <!-- Slide 1 -->
+    <div class="hero-slide active">
+      <img src="assets/images/hero_organic_foods.png" alt="Pure organic honey and pickles" class="hero-slide-bg">
+      <div class="hero-slide-overlay"></div>
+      <div class="container flex" style="align-items: center; height: 100%;">
+        <div class="hero-slide-content">
+          <h1 class="hero-headline">Your Perfect Food Companion</h1>
+          <p class="hero-subheadline">Authentic Taste. Premium Ingredients. Ready In Minutes.</p>
+          <div class="hero-cta-wrapper">
+            <a href="shop.html" class="btn btn-primary">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="hero-slide">
+      <img src="assets/images/hero_combos.png" alt="Curated organic combo packs" class="hero-slide-bg">
+      <div class="hero-slide-overlay"></div>
+      <div class="container flex" style="align-items: center; height: 100%;">
+        <div class="hero-slide-content">
+          <h1 class="hero-headline">Best Selling Combos</h1>
+          <p class="hero-subheadline">Handpicked organic honeys and sun-dried pickles. Crafted for pure health.</p>
+          <div class="hero-cta-wrapper">
+            <a href="shop.html?category=combos" class="btn btn-primary">Explore Combos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="hero-slide">
+      <img src="assets/images/hero_offers.png" alt="Seasonal food deals" class="hero-slide-bg">
+      <div class="hero-slide-overlay"></div>
+      <div class="container flex" style="align-items: center; height: 100%;">
+        <div class="hero-slide-content">
+          <h1 class="hero-headline">Flat Discounts on Favourites</h1>
+          <p class="hero-subheadline">Enjoy massive savings on premium pickles and cold-extracted honey.</p>
+          <div class="hero-cta-wrapper">
+            <a href="shop.html" class="btn btn-primary">Grab Offer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button class="slider-arrow slider-prev" aria-label="Previous Slide">&#10094;</button>
+    <button class="slider-arrow slider-next" aria-label="Next Slide">&#10095;</button>
+    
+    <!-- Dots indicators -->
+    <div class="slider-dots"></div>
+  </section>
+
+  <!-- FEATURE SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="grid features-grid">
+        <!-- Card 1 -->
+        <div class="feature-card reveal-on-scroll">
+          <div class="feature-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </div>
+          <h3 class="feature-title">Free Shipping</h3>
+          <p class="feature-desc">On all pre-paid orders above ₹499 across India.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="feature-card reveal-on-scroll reveal-delay-1">
+          <div class="feature-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          </div>
+          <h3 class="feature-title">Premium Ingredients</h3>
+          <p class="feature-desc">100% natural, unadulterated, directly from fields.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="feature-card reveal-on-scroll reveal-delay-2">
+          <div class="feature-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <h3 class="feature-title">Fast Delivery</h3>
+          <p class="feature-desc">Express delivery in 2-4 business days.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="feature-card reveal-on-scroll reveal-delay-3">
+          <div class="feature-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <h3 class="feature-title">100% Authentic Taste</h3>
+          <p class="feature-desc">Traditional sun-dried recipes cured naturally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY SECTION -->
+  <section class="section-padding" style="background-color: var(--white);">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <h2 class="section-title">Shop By Category</h2>
+        <p class="section-subtitle">Explore our healthy & tasty gourmet food items</p>
+      </div>
+      
+      <div class="grid categories-grid">
+        <!-- Category Honey -->
+        <a href="shop.html?category=honey" class="category-card reveal-on-scroll">
+          <div class="category-img-container">
+            <img src="assets/images/rose_petal_honey.png" alt="Honey">
+          </div>
+          <span class="category-name">Organic Honey</span>
+        </a>
+        <!-- Category Pickles -->
+        <a href="shop.html?category=pickles" class="category-card reveal-on-scroll reveal-delay-1">
+          <div class="category-img-container">
+            <img src="assets/images/oal_pickle.png" alt="Pickles">
+          </div>
+          <span class="category-name">Sun-Dried Pickles</span>
+        </a>
+        <!-- Category Chutneys -->
+        <a href="shop.html?category=chutneys" class="category-card reveal-on-scroll reveal-delay-2">
+          <div class="category-img-container">
+            <img src="assets/images/mango_mint_chutney.png" alt="Chutneys">
+          </div>
+          <span class="category-name">Gourmet Chutneys</span>
+        </a>
+        <!-- Category Ready to Eat -->
+        <a href="shop.html?category=ready-to-eat" class="category-card reveal-on-scroll reveal-delay-3">
+          <div class="category-img-container">
+            <img src="assets/images/paneer_butter_masala.png" alt="Ready To Eat">
+          </div>
+          <span class="category-name">Ready To Eat</span>
+        </a>
+        <!-- Category Frozen Snacks -->
+        <a href="shop.html?category=frozen-snacks" class="category-card reveal-on-scroll reveal-delay-4">
+          <div class="category-img-container">
+            <img src="assets/images/veggie_spring_rolls.png" alt="Frozen Snacks">
+          </div>
+          <span class="category-name">Frozen Snacks</span>
+        </a>
+        <!-- Category Combos -->
+        <a href="shop.html?category=combos" class="category-card reveal-on-scroll reveal-delay-5">
+          <div class="category-img-container">
+            <img src="assets/images/hero_combos.png" alt="Combos">
+          </div>
+          <span class="category-name">Combo Packs</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLER PRODUCTS SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-title-wrapper has-link">
+        <div>
+          <h2 class="section-title">Customer Favorites</h2>
+          <p class="section-subtitle">Our top selling unadulterated food products</p>
+        </div>
+        <a href="shop.html" class="section-link">
+          <span>View All Products</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <div class="grid products-grid">
+        <!-- Product 1 (Wild Honey) -->
+        <div class="product-card reveal-on-scroll">
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=wild-honey-black-forest'">
+            <img src="assets/images/wild_honey.png" alt="Wild Honey">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">250g</span>
+              <span class="product-rating">★ 5.0</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=wild-honey-black-forest">Wild Honey (Black Forest)</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹599</span>
+              <span class="product-card-oldprice">₹699</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('wild-honey-black-forest', 1)">Add To Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 2 (Ginger Honey) -->
+        <div class="product-card reveal-on-scroll reveal-delay-1">
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=ginger-honey'">
+            <img src="assets/images/ginger_honey.png" alt="Ginger Honey">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">250g</span>
+              <span class="product-rating">★ 4.9</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=ginger-honey">Ginger Honey - Raw Honey</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹349</span>
+              <span class="product-card-oldprice">₹399</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('ginger-honey', 1)">Add To Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 3 (Kathal Pickle) -->
+        <div class="product-card reveal-on-scroll reveal-delay-2">
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=kathal-ka-achar'">
+            <img src="assets/images/kathal_pickle.png" alt="Jackfruit Pickle">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">400g</span>
+              <span class="product-rating">★ 4.8</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=kathal-ka-achar">Kathal Ka Achar (Jackfruit)</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹279</span>
+              <span class="product-card-oldprice">₹329</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('kathal-ka-achar', 1)">Add To Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 4 (Jamun Sirka) -->
+        <div class="product-card reveal-on-scroll reveal-delay-3">
+          <span class="product-badge badge-bestseller">Bestseller</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=jamun-ka-sirka'">
+            <img src="assets/images/jamun_sirka.png" alt="Jamun Sirka">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">500ml</span>
+              <span class="product-rating">★ 4.9</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=jamun-ka-sirka">Jamun Ka Sirka (Black Plum)</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹299</span>
+              <span class="product-card-oldprice">₹349</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('jamun-ka-sirka', 1)">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFER & EARN BANNER -->
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="container">
+      <div class="refer-earn-banner reveal-on-scroll">
+        <div class="refer-content">
+          <h2 class="refer-title">Refer Friends & Earn Rewards</h2>
+          <p class="refer-desc">Get Exclusive Discounts for Every Successful Referral. Your friends get 10% off their first order too!</p>
+          <button class="btn btn-accent" id="refer-earn-btn">Get Referral Link</button>
+        </div>
+        <div class="refer-illustration">
+          <img src="assets/images/hero_combos.png" alt="Referral Gift illustration">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVAILABLE ON SECTION -->
+  <section class="section-padding" style="background-color: var(--white); padding: 50px 0;">
+    <div class="container">
+      <div class="section-title-wrapper text-center" style="margin-bottom: 30px;">
+        <h2 class="section-title" style="font-size: 24px;">Available Across Leading Platforms</h2>
+      </div>
+      
+      <div class="brands-carousel-container">
+        <div class="brand-scroll-track">
+          <!-- Brands -->
+          <div class="brand-logo-card"><strong>Swiggy</strong></div>
+          <div class="brand-logo-card"><strong>Instamart</strong></div>
+          <div class="brand-logo-card"><strong>Blinkit</strong></div>
+          <div class="brand-logo-card"><strong>Zepto</strong></div>
+          <div class="brand-logo-card"><strong>BigBasket</strong></div>
+          <div class="brand-logo-card"><strong>Flipkart</strong></div>
+          <div class="brand-logo-card"><strong>Amazon</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMBO PRODUCTS SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <h2 class="section-title">Best Seller Combos</h2>
+        <p class="section-subtitle">Specially curated food bundles with extra discounts</p>
+      </div>
+
+      <div class="grid products-grid">
+        <!-- Combo 1 (Breakfast Honey Combo) -->
+        <div class="product-card reveal-on-scroll">
+          <span class="product-badge badge-discount">22% Off</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=breakfast-honey-combo'">
+            <img src="assets/images/honey_combo.png" alt="Honey Combo">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">500g (2x 250g)</span>
+              <span class="product-rating">★ 4.9</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=breakfast-honey-combo">Breakfast Honey Combo</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹699</span>
+              <span class="product-card-oldprice">₹898</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('breakfast-honey-combo', 1)">Add To Cart</button>
+          </div>
+        </div>
+
+        <!-- Combo 2 (Traditional Pickle Combo) -->
+        <div class="product-card reveal-on-scroll reveal-delay-1">
+          <span class="product-badge badge-discount">10% Off</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=traditional-pickle-combo'">
+            <img src="assets/images/pickle_combo.png" alt="Pickle Combo">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">1.2kg (3x 400g)</span>
+              <span class="product-rating">★ 4.8</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=traditional-pickle-combo">Traditional Pickle Combo</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹649</span>
+              <span class="product-card-oldprice">₹727</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('traditional-pickle-combo', 1)">Add To Cart</button>
+          </div>
+        </div>
+
+        <!-- Combo 3 (Complete Immunity Pack) -->
+        <div class="product-card reveal-on-scroll reveal-delay-2">
+          <span class="product-badge badge-discount">13% Off</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=complete-immunity-pack'">
+            <img src="assets/images/immunity_combo.png" alt="Immunity Pack">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">1.15kg Combined</span>
+              <span class="product-rating">★ 5.0</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=complete-immunity-pack">Complete Immunity Pack</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹949</span>
+              <span class="product-card-oldprice">₹1097</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('complete-immunity-pack', 1)">Add To Cart</button>
+          </div>
+        </div>
+
+        <!-- Combo 4 (Gourmet Gift Box) -->
+        <div class="product-card reveal-on-scroll reveal-delay-3">
+          <span class="product-badge badge-discount">20% Off</span>
+          <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <div class="product-img-wrapper" onclick="location.href='product.html?id=gourmet-gift-box'">
+            <img src="assets/images/gift_box.png" alt="Gift Box">
+          </div>
+          <div class="product-info-wrapper">
+            <div class="product-meta">
+              <span class="product-card-weight">900g Combined</span>
+              <span class="product-rating">★ 4.9</span>
+            </div>
+            <h3 class="product-card-name"><a href="product.html?id=gourmet-gift-box">Gourmet Gift Box</a></h3>
+            <div class="product-pricing-wrapper">
+              <span class="product-card-price">₹899</span>
+              <span class="product-card-oldprice">₹1127</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addToCart('gourmet-gift-box', 1)">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECIPE SECTION -->
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="container">
+      <div class="recipe-overlay-banner reveal-on-scroll">
+        <img src="assets/images/recipe_banner.png" alt="Tasty foods cooked with Mamafarm" class="recipe-bg-img">
+        <div class="recipe-dark-overlay">
+          <div class="recipe-banner-content">
+            <span class="recipe-tag">Kitchen Secrets</span>
+            <h2 class="recipe-headline">Recipes Made Better</h2>
+            <p class="recipe-desc">Discover delicious, healthy, and easy-to-cook recipes using our premium organic honeys, sun-dried pickles, and vinegar.</p>
+            <a href="recipes.html" class="btn btn-secondary">Explore Recipes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL SECTION -->
+  <section class="section-padding testimonials-section">
+    <div class="container">
+      <div class="section-title-wrapper text-center">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Real feedback from health-conscious food lovers</p>
+      </div>
+
+      <div class="testimonial-slider">
+        <!-- Review 1 -->
+        <div class="testimonial-card active">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"My daughter used to fall sick with cold and sore throat constantly. After reading the story of the founder, I tried Mamafarm's Ginger Honey. A spoonful daily has done wonders for her immunity system! Absolutely authentic and unadulterated."</p>
+          <div class="customer-info-wrapper">
+            <div class="customer-details">
+              <h4>Megha Sharma</h4>
+              <span>Verified Mother & Customer, Delhi</span>
+            </div>
+          </div>
+        </div>
+        <!-- Review 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The Jimikand (Oal) pickle is exactly like my grandmother used to make in Bihar. It has that authentic sun-dried punch and is packed with cold-pressed mustard oil. Hard to find such clean D2C brands these days!"</p>
+          <div class="customer-info-wrapper">
+            <div class="customer-details">
+              <h4>Abhishek Mishra</h4>
+              <span>Gourmet Food Enthusiast, Kolkata</span>
+            </div>
+          </div>
+        </div>
+        <!-- Review 3 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Jamun Ka Sirka has become a staple for my father's diabetes management and overall gut digestion. The fact that it is 100% naturally brewed without synthetic acid is what makes Mamafarm trustworthy."</p>
+          <div class="customer-info-wrapper">
+            <div class="customer-details">
+              <h4>Rajesh Patel</h4>
+              <span>Fitness Coach, Mumbai</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="newsletter-wrapper reveal-on-scroll">
+        <div class="newsletter-content">
+          <h2>Get 10% Off On Your First Order</h2>
+          <p>Subscribe to our organic newsletter to receive recipes, health tips, and exclusive coupon codes.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing! Your 10% coupon code is: MAMAFIRST10');">
+            <input type="email" class="newsletter-input" required placeholder="Enter your email address">
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="grid footer-grid">
+        <!-- Col 1: Brand Story -->
+        <div>
+          <h3 class="footer-col-title">Our Story</h3>
+          <p class="footer-brand-story">What began as a mother's personal mission to comfort her sick child organically with raw, local honey evolved into Mamafarm—a wellness D2C food brand. We specialize in organic, unadulterated honey, sun-dried pickles, and vinegar.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-icon" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h3 class="footer-col-title">Quick Links</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shop.html">Shop Catalog</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="contact.html">Where to Buy</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Policies -->
+        <div>
+          <h3 class="footer-col-title">Policies</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html#privacy">Privacy Policy</a></li>
+            <li><a href="about.html#refund">Refund Policy</a></li>
+            <li><a href="about.html#shipping">Shipping Policy</a></li>
+            <li><a href="about.html#terms">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div>
+          <h3 class="footer-col-title">Contact Us</h3>
+          <div class="footer-contact-info">
+            <p><strong>Address:</strong> Srinika Agro Foods, P-309, Hari Sava Math, Kolkata, WB - 700070</p>
+            <p><strong>Phone:</strong> +91 74398 77939</p>
+            <p><strong>Email:</strong> srinikaagrofoods@gmail.com</p>
+            <p><strong>Hours:</strong> Mon - Fri, 9:30 AM - 6:30 PM</p>
+          </div>
+          <div class="license-info">
+            FSSAI LIC NO: <strong>22823043000076</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom-bar">
+      <div class="container footer-bottom-container">
+        <span>Copyright &copy; 2026 Mamafarm. All Rights Reserved.</span>
+        <span>Owned & Marketed by Srinika Agro Foods. Powered by Mamafarm D2C.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CART BAR -->
+  <div class="mobile-sticky-cart-bar">
+    <button class="btn btn-primary btn-block" onclick="showCartDrawer()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span>View Cart (<span class="cart-count-badge">0</span>)</span>
+    </button>
+  </div>
+
+  <!-- SCRIPT LINKS -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

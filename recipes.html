@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes Made Better | Mamafarm</title>
+  <meta name="description" content="Discover delicious, healthy recipes using Mamafarm's unadulterated honey, sun-cured pickles, and brewed vinegar. Easy instructions inside.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-announcement-bar">
+    <div class="container top-ann-container">
+      <div class="social-links">
+        <a href="#" class="social-icon-link" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" class="social-icon-link" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="#" class="social-icon-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+      
+      <div class="ticker-wrapper" id="announcement-ticker">
+        <div class="ticker-item">🎉 Free Shipping Above ₹499</div>
+        <div class="ticker-item">🌿 Get 10% Off On First Order</div>
+        <div class="ticker-item">✨ Save Up To 25% On Combo Packs</div>
+      </div>
+      
+      <div style="width: 80px;"></div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="Mama Farm" class="logo-img">
+      </a>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <form class="search-form" id="header-search-form">
+          <svg class="search-btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-input" id="header-search-input" placeholder="Search pickles, honey, ready-to-eat..." autocomplete="off">
+        </form>
+        <div class="search-suggestions-dropdown" id="search-suggestions"></div>
+      </div>
+
+      <div class="header-utilities">
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        
+        <a href="about.html" class="utility-btn" aria-label="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+        <a href="shop.html?wishlist=true" class="utility-btn" aria-label="Wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </a>
+        <div class="cart-btn-wrapper" id="cart-drawer-trigger" onclick="showCartDrawer()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="header-cart-total">₹0</span>
+          <span class="cart-count-badge">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION MENU -->
+  <nav class="nav-menu">
+    <div class="container nav-container">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item">
+          <a href="shop.html" class="nav-link">Categories ▾</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="shop.html?category=pickles">Pickles</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=chutneys">Chutneys</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=ready-to-eat">Ready To Eat</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=frozen-snacks">Frozen Snacks</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=combos">Combos</a></li>
+            <li class="dropdown-item"><a href="shop.html?category=gift-packs">Gift Packs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+        <li class="nav-item"><a href="recipes.html" class="nav-link active">Recipes</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Where To Buy</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="modal-overlay" id="mobile-drawer-overlay"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Mama Farm" class="logo-img">
+      </div>
+      <button class="mobile-drawer-close" id="mobile-drawer-close">&times;</button>
+    </div>
+    <div class="mobile-drawer-body">
+      <div class="mobile-nav-list">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="shop.html" class="mobile-nav-link">Shop</a>
+        <div class="mobile-nav-item">
+          <h4>Categories</h4>
+          <div class="mobile-nav-sublist">
+            <a href="shop.html?category=pickles" class="mobile-nav-sublink">Pickles</a>
+            <a href="shop.html?category=chutneys" class="mobile-nav-sublink">Chutneys</a>
+            <a href="shop.html?category=ready-to-eat" class="mobile-nav-sublink">Ready To Eat</a>
+            <a href="shop.html?category=frozen-snacks" class="mobile-nav-sublink">Frozen Snacks</a>
+            <a href="shop.html?category=combos" class="mobile-nav-sublink">Combos</a>
+            <a href="shop.html?category=gift-packs" class="mobile-nav-sublink">Gift Packs</a>
+          </div>
+        </div>
+        <a href="about.html" class="mobile-nav-link">About Us</a>
+        <a href="recipes.html" class="mobile-nav-link">Recipes</a>
+        <a href="contact.html" class="mobile-nav-link">Where To Buy</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART DRAWER -->
+  <div class="modal-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Cart</h3>
+      <button class="cart-drawer-close" onclick="hideCartDrawer()">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div class="shipping-meter">
+        <div class="shipping-meter-text" id="shipping-progress-text">Add items to get Free Shipping above ₹499!</div>
+        <div class="shipping-meter-bar">
+          <div class="shipping-meter-progress" id="shipping-progress"></div>
+        </div>
+      </div>
+      <div id="cart-drawer-items"></div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal:</span>
+        <span id="cart-checkout-subtotal">₹0</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="cart-checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- BREADCRUMBS & TITLE -->
+  <section class="section-padding" style="padding-bottom: 20px; background-color: var(--white); border-bottom: 1px solid var(--gray-light);">
+    <div class="container">
+      <div style="font-size: 13px; color: var(--gray); margin-bottom: 8px;">
+        <a href="index.html">Home</a> &nbsp;/&nbsp; <strong style="color: var(--primary);">Recipes</strong>
+      </div>
+      <h1 class="section-title">Recipes Made Better</h1>
+      <p class="section-subtitle">Discover how to spice up your regular meals with Mamafarm's unadulterated products.</p>
+    </div>
+  </section>
+
+  <!-- RECIPES GRID -->
+  <div class="section-padding">
+    <div class="container">
+      <div class="grid recipes-grid" id="recipes-list-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- RECIPE READING OVERLAY MODAL -->
+  <div class="modal-overlay" id="recipe-reader-overlay" onclick="closeRecipeReader()"></div>
+  <div class="checkout-modal recipe-modal-body" id="recipe-reader-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:300;">
+    <!-- Loaded dynamically by JS -->
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="grid footer-grid">
+        <div>
+          <h3 class="footer-col-title">Our Story</h3>
+          <p class="footer-brand-story">What began as a mother's personal mission to comfort her sick child organically with raw, local honey evolved into Mamafarm—a wellness D2C food brand. We specialize in organic, unadulterated honey, sun-dried pickles, and vinegar.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-icon" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="footer-col-title">Quick Links</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="shop.html">Shop Catalog</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="contact.html">Where to Buy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Policies</h3>
+          <ul class="footer-links-list">
+            <li><a href="about.html#privacy">Privacy Policy</a></li>
+            <li><a href="about.html#refund">Refund Policy</a></li>
+            <li><a href="about.html#shipping">Shipping Policy</a></li>
+            <li><a href="about.html#terms">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-col-title">Contact Us</h3>
+          <div class="footer-contact-info">
+            <p><strong>Address:</strong> Srinika Agro Foods, P-309, Hari Sava Math, Kolkata, WB - 700070</p>
+            <p><strong>Phone:</strong> +91 74398 77939</p>
+            <p><strong>Email:</strong> srinikaagrofoods@gmail.com</p>
+            <p><strong>Hours:</strong> Mon - Fri, 9:30 AM - 6:30 PM</p>
+          </div>
+          <div class="license-info">
+            FSSAI LIC NO: <strong>22823043000076</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom-bar">
+      <div class="container footer-bottom-container">
+        <span>Copyright &copy; 2026 Mamafarm. All Rights Reserved.</span>
+        <span>Owned & Marketed by Srinika Agro Foods. Powered by Mamafarm D2C.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CART BAR -->
+  <div class="mobile-sticky-cart-bar">
+    <button class="btn btn-primary btn-block" onclick="showCartDrawer()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span>View Cart (<span class="cart-count-badge">0</span>)</span>
+    </button>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- RECIPES DATABASE & INTERACTIVE LOGIC -->
+  <script>
+    const recipes = [
+      {
+        id: "oal-paratha",
+        title: "Traditional Jimikand Pickle Stuffed Paratha",
+        tag: "Pickle Delight",
+        desc: "Transform simple wheat parathas into a spicy Bihari feast. Grated Jimikand (Oal) pickle stuffed in dough and griddled with ghee.",
+        image: "assets/images/recipe_banner.png",
+        prepTime: "15 mins",
+        cookTime: "15 mins",
+        servings: "4 Parathas",
+        ingredients: [
+          "2 cups Whole wheat flour (atta)",
+          "4-5 tablespoons Mamafarm Oal Ka Achar (Yam Pickle)",
+          "1 medium Onion, finely chopped",
+          "2 Green chilies, minced",
+          "Fresh coriander leaves, chopped",
+          "Ghee or cold-pressed mustard oil for frying",
+          "Warm water to knead dough"
+        ],
+        instructions: [
+          "Knead wheat flour with a pinch of salt and warm water into a soft pliable dough. Rest it covered for 10 minutes.",
+          "In a bowl, mix Mamafarm Oal Ka Achar, chopped onions, green chilies, and fresh coriander. Mash slightly to form a stuffing mixture.",
+          "Divide dough into lemon-sized balls. Roll a ball out slightly, place a spoonful of stuffing in the center, gather edges, pinch to seal, and roll it out carefully.",
+          "Cook paratha on a hot tawa, flipping once. Spread ghee on both sides and press down until golden brown spots appear.",
+          "Serve hot directly with a dollop of yogurt or sweet tomato chutney."
+        ],
+        productId: "oal-ka-achar"
+      },
+      {
+        id: "rose-honey-pancakes",
+        title: "Fluffy Pancakes with Rose Petal Honey",
+        tag: "Sweet Breakfast",
+        desc: "Ditch processed syrups! Drizzle fresh, warm pancakes with unadulterated Rose Petal Honey for a luxurious floral breakfast.",
+        image: "assets/images/rose_petal_honey.png",
+        prepTime: "10 mins",
+        cookTime: "12 mins",
+        servings: "2 Servings",
+        ingredients: [
+          "1 cup All-purpose flour",
+          "1 tablespoon Sugar",
+          "1 teaspoon Baking powder",
+          "1 pinch Salt",
+          "1 Egg",
+          "3/4 cup Milk",
+          "2 tablespoons Melted butter",
+          "4 tablespoons Mamafarm Rose Petal Honey"
+        ],
+        instructions: [
+          "In a large bowl, whisk together flour, sugar, baking powder, and salt.",
+          "In another bowl, whisk the egg, milk, and melted butter. Pour the wet ingredients into dry ingredients and stir gently (some lumps are okay).",
+          "Heat a non-stick skillet or griddle over medium heat, grease with butter.",
+          "Pour 1/4 cup of batter for each pancake. Cook until bubbles form on top, flip, and cook until golden brown.",
+          "Stack pancakes on a plate, pour Mamafarm Rose Petal Honey generously, garnish with clean organic rose petals, and serve immediately."
+        ],
+        productId: "rose-petal-honey"
+      },
+      {
+        id: "jamun-salad",
+        title: "Summer Green Salad with Brewed Jamun Vinegar",
+        tag: "Healthy Vinaigrette",
+        desc: "A fat-burning, digestive green salad tossed in a tangy vinaigrette crafted from naturally fermented Jamun vinegar.",
+        image: "assets/images/jamun_sirka.png",
+        prepTime: "8 mins",
+        cookTime: "0 mins",
+        servings: "2 Servings",
+        ingredients: [
+          "2 cups Fresh baby spinach & lettuce leaves",
+          "1 Cucumber, sliced",
+          "1/2 cup Cherry tomatoes, halved",
+          "1/4 cup Red onions, thinly sliced",
+          "1/4 cup Feta cheese crumbs",
+          "3 tablespoons Cold-pressed olive oil",
+          "2 tablespoons Mamafarm Jamun ka Sirka (Vinegar)",
+          "1 teaspoon Organic Honey",
+          "Salt & cracked black pepper to taste"
+        ],
+        instructions: [
+          "Wash the salad greens thoroughly in cold water, spin dry, and place in a large wooden salad bowl.",
+          "Add sliced cucumber, tomatoes, and red onions.",
+          "In a small jar, mix olive oil, Jamun ka Sirka, honey, salt, and pepper. Shake vigorously until fully emulsified.",
+          "Drizzle vinaigrette over greens, toss lightly. Garnish with feta cheese on top and serve chilled."
+        ],
+        productId: "jamun-ka-sirka"
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const listGrid = document.getElementById('recipes-list-grid');
+
+      listGrid.innerHTML = recipes.map(r => `
+        <div class="recipe-card reveal-on-scroll animated" onclick="openRecipeReader('${r.id}')">
+          <div class="recipe-img-box">
+            <img src="${r.image}" alt="${r.title}">
+          </div>
+          <div class="recipe-info">
+            <span class="recipe-card-tag">${r.tag}</span>
+            <h3 class="recipe-card-title">${r.title}</h3>
+            <p class="recipe-card-desc">${r.desc}</p>
+            <div class="recipe-meta-bottom">
+              <span>⏱ Prep: ${r.prepTime}</span>
+              <span>🍳 Cook: ${r.cookTime}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    });
+
+    function openRecipeReader(id) {
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+
+      const overlay = document.getElementById('recipe-reader-overlay');
+      const modal = document.getElementById('recipe-reader-modal');
+
+      modal.innerHTML = `
+        <div class="recipe-modal-hero">
+          <img src="${recipe.image}" alt="${recipe.title}">
+          <div class="recipe-modal-hero-overlay">
+            <h2 class="recipe-modal-title">${recipe.title}</h2>
+          </div>
+          <button class="modal-close" onclick="closeRecipeReader()" style="position:absolute; top:20px; right:20px; color:white; font-size:36px;">&times;</button>
+        </div>
+        <div class="recipe-modal-content-details">
+          <!-- Left ingredients -->
+          <div class="recipe-ingredients-box">
+            <h3 style="color:var(--primary); margin-bottom:12px; font-family:var(--font-headings); font-weight:700;">Ingredients</h3>
+            <ul class="ingredients-list">
+              ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
+            </ul>
+            <div style="margin-top: 30px;">
+              <h4 style="font-size:12px; text-transform:uppercase; color:var(--gray); margin-bottom:10px;">Hero Ingredient</h4>
+              <a href="product.html?id=${recipe.productId}" class="btn btn-primary btn-block" style="padding:10px; font-size:13px;">Buy Hero Product</a>
+            </div>
+          </div>
+          <!-- Right instructions -->
+          <div>
+            <div style="display:flex; gap:20px; font-size:14px; color:var(--gray); margin-bottom:24px;">
+              <span>⏱ <strong>Prep:</strong> ${recipe.prepTime}</span>
+              <span>🍳 <strong>Cook:</strong> ${recipe.cookTime}</span>
+              <span>👥 <strong>Servings:</strong> ${recipe.servings}</span>
+            </div>
+            <h3 style="color:var(--primary); margin-bottom:16px; font-family:var(--font-headings); font-weight:700;">Preparation</h3>
+            <ol class="instructions-steps" style="list-style:decimal; padding-left:16px;">
+              ${recipe.instructions.map((step, idx) => `
+                <li>
+                  <strong>Step ${idx + 1}</strong>
+                  <p style="font-size:14px; line-height:1.6; color:var(--text);">${step}</p>
+                </li>
+              `).join('')}
+            </ol>
+          </div>
+        </div>
+      `;
+
+      overlay.classList.add('active');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRecipeReader() {
+      const overlay = document.getElementById('recipe-reader-overlay');
+      const modal = document.getElementById('recipe-reader-modal');
+
+      overlay.classList.remove('active');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  </script>
+</body>
+</html>
