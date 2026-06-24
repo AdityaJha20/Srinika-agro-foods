@@ -9,7 +9,7 @@ const connectDB = require('./config/db');
 const logger = require('./utils/logger');
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./middlewares/error.middleware');
-
+const authRoutes = require('./routes/auth.routes');
 // Unhandled Exception Guard
 process.on('uncaughtException', (err) => {
   logger.error('UNCAUGHT EXCEPTION! 💥 Shutting down...', err);
@@ -44,7 +44,7 @@ app.get('/api/health', (req, res) => {
     memoryUsage: process.memoryUsage()
   });
 });
-
+app.use('/api/v1/auth', authRoutes);
 // Fallback Route for Undefined Paths
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
