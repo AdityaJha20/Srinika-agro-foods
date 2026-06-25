@@ -85,7 +85,7 @@ const getProducts = catchAsync(async (req, res, next) => {
   query = query.skip(skip).limit(limit);
 
   // Populate category information
-  //query = query.populate('category', 'name description');
+  query = query.populate('category', 'name description');
 
   // Execute query and count documents for metadata
   const [products, total] = await Promise.all([
@@ -118,7 +118,7 @@ const getProductById = catchAsync(async (req, res, next) => {
     return next(new AppError('Invalid product ID format', 400));
   }
 
-  const product = await Product.findById(id);
+  const product = await Product.findById(id).populate('category', 'name description');
 
   if (!product) {
     return next(new AppError('Product not found', 404));
