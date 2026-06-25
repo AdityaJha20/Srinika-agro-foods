@@ -266,9 +266,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       const productId = urlParams.get('id');
 
-      const product = window.getProductById(productId);
-
-      if (!product) {
+      const renderNotFound = () => {
         content.innerHTML = `
           <div style="text-align: center; padding: 80px 0; color: var(--gray);">
             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 24px; color: var(--danger);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
@@ -278,175 +276,237 @@
           </div>
         `;
         relatedSection.style.display = 'none';
-        return;
-      }
+      };
 
-      // Update Document Meta
-      document.title = `${product.name} | Mamafarm`;
-      const descMeta = document.querySelector('meta[name="description"]');
-      if (descMeta) descMeta.setAttribute('content', product.description);
-
-      // Render Product Layout
-      content.innerHTML = `
-        <div class="product-details-container">
-          <!-- Left: Images -->
-          <div class="product-detail-images">
-            <div class="product-main-img-box">
-              <img id="main-product-image" src="${product.image}" alt="${product.name}">
-            </div>
+      const renderError = () => {
+        content.innerHTML = `
+          <div style="text-align: center; padding: 80px 0; color: var(--danger);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 24px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <h2 style="font-family: var(--font-headings); font-size: 32px; font-weight:700;">Connection Error</h2>
+            <p style="margin-top: 12px; font-size: 16px;">Unable to fetch product details from the backend server.</p>
+            <button class="btn btn-primary" style="margin-top: 24px;" onclick="location.reload()">Retry</button>
           </div>
-          
-          <!-- Right: Info -->
-          <div class="product-detail-info">
-            <span class="product-detail-category">${product.category}</span>
-            <h1 class="product-detail-name">${product.name}</h1>
-            
-            <div class="product-detail-rating">
-              <span class="stars">★★★★★</span>
-              <span class="reviews-count">(${product.rating} rating from ${product.reviewsCount} customer reviews)</span>
-            </div>
-            
-            <div class="product-detail-price-box">
-              <span class="product-detail-price">₹${product.price}</span>
-              ${product.price < product.originalPrice ? `<span class="product-detail-oldprice">₹${product.originalPrice}</span>` : ''}
-            </div>
-            
-            <p class="product-detail-desc">${product.description}</p>
-            
-            <div class="product-detail-specs">
-              <strong>Net Weight:</strong> <span>${product.weight}</span>
-              <strong>Avalaibility:</strong> <span>In Stock (Fresh Batch)</span>
-              <strong>Sourcing:</strong> <span>100% Organic & Chemical-Free</span>
-            </div>
-            
-            <div class="product-detail-actions">
-              <div class="detail-qty-selector">
-                <button class="qty-btn" id="detail-qty-minus">-</button>
-                <span class="qty-val" id="detail-qty-val">1</span>
-                <button class="qty-btn" id="detail-qty-plus">+</button>
-              </div>
-              <button class="btn btn-primary" style="flex:1;" id="add-to-cart-detail-btn">Add to Cart</button>
-              <button class="btn btn-secondary" style="flex:1;" id="buy-now-detail-btn">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Tabs section -->
-        <div class="product-tabs-wrapper">
-          <div class="tab-nav">
-            <button class="tab-btn active" data-tab="tab-desc">Description</button>
-            <button class="tab-btn" data-tab="tab-nutrition">Nutritional Facts</button>
-            <button class="tab-btn" data-tab="tab-usage">How to Use</button>
-          </div>
-          
-          <div class="tab-content active" id="tab-desc">
-            <h3 style="color: var(--primary); margin-bottom:16px; font-family: var(--font-headings); font-weight:700;">Key Benefits</h3>
-            <ul class="tab-benefits-list">
-              ${product.benefits.map(b => `<li>${b}</li>`).join('')}
-            </ul>
-          </div>
-          
-          <div class="tab-content" id="tab-nutrition">
-            <h3 style="color: var(--primary); margin-bottom:16px; font-family: var(--font-headings); font-weight:700;">Nutritional Information</h3>
-            <p style="margin-bottom:20px; font-size:14px; color:var(--gray)">Approximate values per 100g serving of product.</p>
-            ${typeof product.nutritionalFacts === 'object' ? `
-              <table class="nutritional-table">
-                <tbody>
-                  ${Object.entries(product.nutritionalFacts).map(([key, val]) => `
-                    <tr>
-                      <td>${key}</td>
-                      <td>${val}</td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
-            ` : `<p>${product.nutritionalFacts}</p>`}
-          </div>
-          
-          <div class="tab-content" id="tab-usage">
-            <h3 style="color: var(--primary); margin-bottom:16px; font-family: var(--font-headings); font-weight:700;">Directions of Use</h3>
-            <p style="font-size:15px; line-height:1.7;">${product.howToUse}</p>
-          </div>
-        </div>
-      `;
-
-      // Setup Quantity & Add to Cart events
-      const qtyVal = document.getElementById('detail-qty-val');
-      const qtyMinus = document.getElementById('detail-qty-minus');
-      const qtyPlus = document.getElementById('detail-qty-plus');
-      const addCartBtn = document.getElementById('add-to-cart-detail-btn');
-      const buyNowBtn = document.getElementById('buy-now-detail-btn');
-
-      let currentQuantity = 1;
-
-      qtyMinus.addEventListener('click', () => {
-        if (currentQuantity > 1) {
-          currentQuantity--;
-          qtyVal.textContent = currentQuantity;
-        }
-      });
-
-      qtyPlus.addEventListener('click', () => {
-        currentQuantity++;
-        qtyVal.textContent = currentQuantity;
-      });
-
-      addCartBtn.addEventListener('click', () => {
-        window.addToCart(product.id, currentQuantity);
-      });
-
-      buyNowBtn.addEventListener('click', () => {
-        window.addToCart(product.id, currentQuantity);
-        window.checkout();
-      });
-
-      // Tabs Functionality
-      const tabBtns = document.querySelectorAll('.tab-btn');
-      const tabContents = document.querySelectorAll('.tab-content');
-
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          tabBtns.forEach(b => b.classList.remove('active'));
-          tabContents.forEach(c => c.classList.remove('active'));
-
-          btn.classList.add('active');
-          document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
-        });
-      });
-
-      // Render Related Products (Same category, excluding current)
-      const related = window.products
-        .filter(p => p.category === product.category && p.id !== product.id)
-        .slice(0, 4);
-
-      if (related.length === 0) {
+        `;
         relatedSection.style.display = 'none';
-      } else {
-        relatedGrid.innerHTML = related.map(p => `
-          <div class="product-card">
-            ${p.isBestseller ? `<span class="product-badge badge-bestseller">Bestseller</span>` : ''}
-            ${p.price < p.originalPrice ? `<span class="product-badge badge-discount">${Math.round(((p.originalPrice - p.price)/p.originalPrice)*100)}% Off</span>` : ''}
-            <button class="product-wishlist-btn" aria-label="Add to Wishlist">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            </button>
-            <div class="product-img-wrapper" onclick="location.href='product.html?id=${p.id}'">
-              <img src="${p.image}" alt="${p.name}" loading="lazy">
+      };
+
+      const renderProduct = (product) => {
+        // Update Document Meta
+        document.title = `${product.name} | Mamafarm`;
+        const descMeta = document.querySelector('meta[name="description"]');
+        if (descMeta) descMeta.setAttribute('content', product.description);
+
+        // Render Product Layout
+        content.innerHTML = `
+          <div class="product-details-container">
+            <!-- Left: Images -->
+            <div class="product-detail-images">
+              <div class="product-main-img-box">
+                <img id="main-product-image" src="${product.image}" alt="${product.name}">
+              </div>
             </div>
-            <div class="product-info-wrapper">
-              <div class="product-meta">
-                <span class="product-card-weight">${p.weight}</span>
-                <span class="product-rating">★ ${p.rating}</span>
+            
+            <!-- Right: Info -->
+            <div class="product-detail-info">
+              <span class="product-detail-category">${product.category}</span>
+              <h1 class="product-detail-name">${product.name}</h1>
+              
+              <div class="product-detail-rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews-count">(${product.rating} rating from ${product.reviewsCount} customer reviews)</span>
               </div>
-              <h3 class="product-card-name"><a href="product.html?id=${p.id}">${p.name}</a></h3>
-              <div class="product-pricing-wrapper">
-                <span class="product-card-price">₹${p.price}</span>
-                ${p.price < p.originalPrice ? `<span class="product-card-oldprice">₹${p.originalPrice}</span>` : ''}
+              
+              <div class="product-detail-price-box">
+                <span class="product-detail-price">₹${product.price}</span>
+                ${product.price < product.originalPrice ? `<span class="product-detail-oldprice">₹${product.originalPrice}</span>` : ''}
               </div>
-              <button class="btn btn-primary btn-block" onclick="addToCart('${p.id}', 1)">Add To Cart</button>
+              
+              <p class="product-detail-desc">${product.description}</p>
+              
+              <div class="product-detail-specs">
+                <strong>Net Weight:</strong> <span>${product.weight}</span>
+                <strong>Availability:</strong> <span>${product.stock > 0 ? `In Stock (${product.stock} units)` : 'Out of Stock'}</span>
+                <strong>Sourcing:</strong> <span>100% Organic & Chemical-Free</span>
+              </div>
+              
+              <div class="product-detail-actions">
+                <div class="detail-qty-selector">
+                  <button class="qty-btn" id="detail-qty-minus">-</button>
+                  <span class="qty-val" id="detail-qty-val">1</span>
+                  <button class="qty-btn" id="detail-qty-plus">+</button>
+                </div>
+                <button class="btn btn-primary" style="flex:1;" id="add-to-cart-detail-btn" ${product.stock > 0 ? '' : 'disabled'}>${product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}</button>
+                <button class="btn btn-secondary" style="flex:1;" id="buy-now-detail-btn" ${product.stock > 0 ? '' : 'disabled'}>Buy Now</button>
+              </div>
             </div>
           </div>
-        `).join('');
-      }
+          
+          <!-- Tabs section -->
+          <div class="product-tabs-wrapper">
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="tab-desc">Description</button>
+              <button class="tab-btn" data-tab="tab-nutrition">Nutritional Facts</button>
+              <button class="tab-btn" data-tab="tab-usage">How to Use</button>
+            </div>
+            
+            <div class="tab-content active" id="tab-desc">
+              <h3 style="color: var(--primary); margin-bottom:16px; font-family: var(--font-headings); font-weight:700;">Key Benefits</h3>
+              <ul class="tab-benefits-list">
+                ${product.benefits.map(b => `<li>${b}</li>`).join('')}
+              </ul>
+            </div>
+            
+            <div class="tab-content" id="tab-nutrition">
+              <h3 style="color: var(--primary); margin-bottom:16px; font-family: var(--font-headings); font-weight:700;">Nutritional Information</h3>
+              <p style="margin-bottom:20px; font-size:14px; color:var(--gray)">Approximate values per 100g serving of product.</p>
+              ${typeof product.nutritionalFacts === 'object' ? `
+                <table class="nutritional-table">
+                  <tbody>
+                    ${Object.entries(product.nutritionalFacts).map(([key, val]) => `
+                      <tr>
+                        <td>${key}</td>
+                        <td>${val}</td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              ` : `<p>${product.nutritionalFacts}</p>`}
+            </div>
+            
+            <div class="tab-content" id="tab-usage">
+              <h3 style="color: var(--primary); margin-bottom:16px; font-family: var(--font-headings); font-weight:700;">Directions of Use</h3>
+              <p style="font-size:15px; line-height:1.7;">${product.howToUse}</p>
+            </div>
+          </div>
+        `;
+
+        // Setup Quantity & Add to Cart events
+        const qtyVal = document.getElementById('detail-qty-val');
+        const qtyMinus = document.getElementById('detail-qty-minus');
+        const qtyPlus = document.getElementById('detail-qty-plus');
+        const addCartBtn = document.getElementById('add-to-cart-detail-btn');
+        const buyNowBtn = document.getElementById('buy-now-detail-btn');
+
+        let currentQuantity = 1;
+
+        qtyMinus.addEventListener('click', () => {
+          if (currentQuantity > 1) {
+            currentQuantity--;
+            qtyVal.textContent = currentQuantity;
+          }
+        });
+
+        qtyPlus.addEventListener('click', () => {
+          currentQuantity++;
+          qtyVal.textContent = currentQuantity;
+        });
+
+        addCartBtn.addEventListener('click', () => {
+          window.addToCart(product.id, currentQuantity);
+        });
+
+        buyNowBtn.addEventListener('click', () => {
+          window.addToCart(product.id, currentQuantity);
+          window.checkout();
+        });
+
+        // Tabs Functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+          });
+        });
+
+        // Render Related Products (Same category, excluding current)
+        const related = window.products
+          .filter(p => p.category === product.category && p.id !== product.id)
+          .slice(0, 4);
+
+        if (related.length === 0) {
+          relatedSection.style.display = 'none';
+        } else {
+          relatedGrid.innerHTML = related.map(p => `
+            <div class="product-card">
+              ${p.isBestseller ? `<span class="product-badge badge-bestseller">Bestseller</span>` : ''}
+              ${p.price < p.originalPrice ? `<span class="product-badge badge-discount">${Math.round(((p.originalPrice - p.price)/p.originalPrice)*100)}% Off</span>` : ''}
+              <button class="product-wishlist-btn" aria-label="Add to Wishlist">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </button>
+              <div class="product-img-wrapper" onclick="location.href='product.html?id=${p.id}'">
+                <img src="${p.image}" alt="${p.name}" loading="lazy">
+              </div>
+              <div class="product-info-wrapper">
+                <div class="product-meta">
+                  <span class="product-card-weight">${p.weight}</span>
+                  <span class="product-rating">★ ${p.rating}</span>
+                </div>
+                <h3 class="product-card-name"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+                <div class="product-pricing-wrapper">
+                  <span class="product-card-price">₹${p.price}</span>
+                  ${p.price < p.originalPrice ? `<span class="product-card-oldprice">₹${p.originalPrice}</span>` : ''}
+                </div>
+                <button class="btn btn-primary btn-block" ${p.stock > 0 ? '' : 'disabled'} onclick="addToCart('${p.id}', 1)">${p.stock > 0 ? 'Add To Cart' : 'Out of Stock'}</button>
+              </div>
+            </div>
+          `).join('');
+        }
+      };
+
+      // Load products from backend and render the correct product
+      const loadProductDetails = async () => {
+        try {
+          const res = await fetch('http://localhost:5001/api/v1/products?limit=100');
+          if (!res.ok) throw new Error('API failed to respond properly');
+          const json = await res.json();
+          
+          window.products = json.data.products.map(p => ({
+            id: p.sku || p._id,
+            name: p.name,
+            category: p.category && typeof p.category === 'object' ? p.category.name : p.category,
+            price: p.price,
+            originalPrice: p.price * 1.2,
+            weight: typeof p.weight === 'number' ? `${p.weight}g` : p.weight,
+            image: p.images && p.images.length > 0 ? p.images[0] : 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="%23f0f0f0"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="10" fill="%23999999">No Image</text></svg>',
+            description: p.description,
+            benefits: p.benefits || [
+              "100% natural, no additives",
+              "Rich in antioxidants",
+              "Aids digestion and metabolism",
+              "Traditional sun-dried preparation"
+            ],
+            nutritionalFacts: p.nutritionalFacts || {
+              "Energy": "180 kcal",
+              "Protein": "2.1g",
+              "Carbohydrates": "12g",
+              "Fat": "14g"
+            },
+            howToUse: p.howToUse || 'Pairs beautifully with hot parathas, khichdi, or simple dal-rice.',
+            rating: p.rating || 4.8,
+            reviewsCount: p.reviewsCount || 104,
+            isBestseller: p.featured || false,
+            stock: p.stock
+          }));
+
+          const product = window.products.find(p => p.id === productId);
+          if (!product) {
+            renderNotFound();
+          } else {
+            renderProduct(product);
+          }
+        } catch (err) {
+          console.error(err);
+          renderError();
+        }
+      };
+
+      loadProductDetails();
     });
   </script>
 </body>

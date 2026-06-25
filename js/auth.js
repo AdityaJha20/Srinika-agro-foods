@@ -3,7 +3,7 @@
 // Register: POST http://localhost:5000/api/v1/auth/register
 // Login: POST http://localhost:5000/api/v1/auth/login
 
-const API_BASE_URL = 'http://localhost:5000/api/v1';
+const API_BASE_URL = 'http://localhost:5001/api/v1';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Dynamic Navbar & Mobile Menu state integration
