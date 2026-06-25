@@ -10,6 +10,8 @@ const logger = require('./utils/logger');
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./middlewares/error.middleware');
 const authRoutes = require('./routes/auth.routes');
+const productRoutes = require('./routes/product.routes');
+require('./models/Category');
 // Unhandled Exception Guard
 process.on('uncaughtException', (err) => {
   logger.error('UNCAUGHT EXCEPTION! 💥 Shutting down...', err);
@@ -45,6 +47,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/products', productRoutes);
 // Fallback Route for Undefined Paths
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
