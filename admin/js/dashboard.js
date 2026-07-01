@@ -9,6 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let editingProductId = null;
   let deletingProductId = null;
 
+  // --- State Variables for Orders View ---
+  let currentOrdersPage = 1;
+  const ordersLimit = 10;
+  let ordersSearchQuery = '';
+  let ordersStatusFilter = '';
+  let ordersSearchTimeout = null;
+  let loadedOrders = [];
+  let currentDetailOrderId = null;
+
 
   // --- 1. Load Admin Profile details dynamically ---
   const profileNameEl = document.getElementById('admin-profile-name');
@@ -87,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Run statistics fetch immediately on load
   fetchDashboardStats();
+  fetchRecentOrders();
 
   // --- 2. Mobile Sidebar Toggle Drawer ---
   const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -114,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelectorAll('.sidebar-menu .menu-item');
   const dashboardView = document.getElementById('dashboard-view');
   const productsView = document.getElementById('products-view');
+  const ordersView = document.getElementById('orders-view');
   const pageTitle = document.getElementById('breadcrumb-page-title');
   const breadcrumbCurrent = document.getElementById('breadcrumb-current-view');
 
@@ -132,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle view visibility
         if (dashboardView) dashboardView.style.display = 'flex';
         if (productsView) productsView.style.display = 'none';
+        if (ordersView) ordersView.style.display = 'none';
 
         // Update Breadcrumbs
         if (pageTitle) pageTitle.textContent = 'Overview';
@@ -143,10 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Refresh statistics when coming back to the overview dashboard
         fetchDashboardStats();
+        fetchRecentOrders();
       } else if (targetView === 'products') {
         // Toggle view visibility
         if (dashboardView) dashboardView.style.display = 'none';
         if (productsView) productsView.style.display = 'flex';
+        if (ordersView) ordersView.style.display = 'none';
 
         // Update Breadcrumbs
         if (pageTitle) pageTitle.textContent = 'Products';
@@ -159,6 +173,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch categories and products catalog
         fetchCategories();
         fetchProducts();
+      } else if (targetView === 'orders') {
+        // Toggle view visibility
+        if (dashboardView) dashboardView.style.display = 'none';
+        if (productsView) productsView.style.display = 'none';
+        if (ordersView) ordersView.style.display = 'flex';
+
+        // Update Breadcrumbs
+        if (pageTitle) pageTitle.textContent = 'Orders';
+        if (breadcrumbCurrent) breadcrumbCurrent.textContent = 'Orders';
+
+        // Update Sidebar Active state
+        menuItems.forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
+
+        // Fetch orders catalog
+        fetchOrders();
       } else {
         // Other views are not implemented yet: highlight button but do not switch display
         menuItems.forEach(el => el.classList.remove('active'));
@@ -1004,5 +1034,519 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // =========================================================================
+  // --- 8. Orders Management Logic (Fetch, Search, Filter, Pagination, Details Modal) ---
+  // =========================================================================
+  const ordersTableBody = document.getElementById('orders-table-body');
+  const ordersPaginationContainer = document.getElementById('orders-pagination');
+  const orderSearchInput = document.getElementById('order-search');
+  const orderStatusFilterSelect = document.getElementById('order-status-filter');
+  const orderDetailsModal = document.getElementById('order-details-modal');
+
+  // Fetch all orders
+  async function fetchOrders() {
+    if (!ordersTableBody) return;
+
+    // Show Loading State
+    renderOrdersLoadingState();
+
+    try {
+      const token = localStorage.getItem('accessToken');
+      let url = `http://localhost:5001/api/v1/admin/orders?page=${currentOrdersPage}&limit=${ordersLimit}`;
+      if (ordersSearchQuery) {
+        url += `&search=${encodeURIComponent(ordersSearchQuery)}`;
+      }
+      if (ordersStatusFilter) {
+        url += `&status=${encodeURIComponent(ordersStatusFilter)}`;
+      }
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      const resData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(resData.message || 'Failed to retrieve orders listing.');
+      }
+
+      const orders = resData.data.orders;
+      loadedOrders = orders;
+      const total = resData.totalResults;
+      const totalPages = resData.totalPages;
+      const page = resData.currentPage;
+
+      if (!orders || orders.length === 0) {
+        renderOrdersEmptyState();
+        if (ordersPaginationContainer) ordersPaginationContainer.innerHTML = '';
+        return;
+      }
+
+      // Render rows
+      renderOrderRows(orders);
+
+      // Render pagination
+      renderOrdersPagination(total, totalPages, page);
+
+    } catch (err) {
+      renderOrdersErrorState(err.message);
+      if (ordersPaginationContainer) ordersPaginationContainer.innerHTML = '';
+    }
+  }
+
+  function renderOrdersLoadingState() {
+    ordersTableBody.innerHTML = `
+      <tr>
+        <td colspan="8" class="text-center">
+          <div class="loading-spinner-wrapper">
+            <svg class="spinner" width="32" height="32" viewBox="0 0 50 50" style="animation: rotate 2s linear infinite; margin-bottom: 8px;">
+              <circle class="path" cx="25" cy="25" r="20" fill="none" stroke="var(--primary)" stroke-width="5" style="stroke-dasharray: 1, 150; stroke-dashoffset: 0; animation: dash 1.5s ease-in-out infinite;"></circle>
+            </svg>
+            <p style="font-weight: 600; color: var(--primary);">Loading orders...</p>
+          </div>
+        </td>
+      </tr>
+    `;
+  }
+
+  function renderOrdersEmptyState() {
+    ordersTableBody.innerHTML = `
+      <tr>
+        <td colspan="8" class="text-center">
+          <div class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gray)" stroke-width="1.5" style="margin-bottom: 8px;"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            <p style="color: var(--gray); font-weight: 500;">No orders found matching your criteria.</p>
+          </div>
+        </td>
+      </tr>
+    `;
+  }
+
+  function renderOrdersErrorState(errorMsg) {
+    ordersTableBody.innerHTML = `
+      <tr>
+        <td colspan="8" class="text-center">
+          <div class="error-state" style="color: var(--danger);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 8px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+            <p style="font-weight: 600;">Failed to load orders: ${errorMsg}</p>
+            <button id="orders-retry-btn" class="btn-retry">Retry Fetch</button>
+          </div>
+        </td>
+      </tr>
+    `;
+    const retryBtn = document.getElementById('orders-retry-btn');
+    if (retryBtn) {
+      retryBtn.addEventListener('click', fetchOrders);
+    }
+  }
+
+  function renderOrderRows(orders) {
+    ordersTableBody.innerHTML = '';
+    orders.forEach(order => {
+      // Order Status Badge
+      let orderStatusClass = 'badge';
+      if (order.orderStatus === 'placed') orderStatusClass += ' status-pending';
+      else if (order.orderStatus === 'confirmed' || order.orderStatus === 'processing') orderStatusClass += ' status-pending';
+      else if (order.orderStatus === 'shipped' || order.orderStatus === 'delivered') orderStatusClass += ' status-delivered';
+      else if (order.orderStatus === 'cancelled') orderStatusClass += ' status-cancelled';
+
+      // Payment Status Badge
+      let paymentStatusClass = 'badge';
+      if (order.paymentStatus === 'pending') paymentStatusClass += ' status-pending';
+      else if (order.paymentStatus === 'paid') paymentStatusClass += ' status-delivered';
+      else if (order.paymentStatus === 'failed' || order.paymentStatus === 'refunded') paymentStatusClass += ' status-cancelled';
+
+      const customerName = order.user ? order.user.name : 'Guest';
+      const customerEmail = order.user ? order.user.email : '';
+      
+      const dateFormatted = new Date(order.createdAt).toLocaleDateString('en-IN', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+
+      const priceFormatted = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        maximumFractionDigits: 2
+      }).format(order.totalAmount);
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="font-mono font-bold">${order.orderId}</td>
+        <td>
+          <div class="customer-cell">
+            <div class="customer-avatar">${customerName.substring(0, 2).toUpperCase()}</div>
+            <div>
+              <span class="customer-name">${customerName}</span>
+              <span class="customer-email">${customerEmail}</span>
+            </div>
+          </div>
+        </td>
+        <td style="text-transform: uppercase;">${order.paymentMethod}</td>
+        <td class="font-bold">${priceFormatted}</td>
+        <td><span class="${paymentStatusClass}">${order.paymentStatus}</span></td>
+        <td><span class="${orderStatusClass}">${order.orderStatus}</span></td>
+        <td>${dateFormatted}</td>
+        <td class="text-right">
+          <button class="action-btn view-order-btn" aria-label="View Details" data-id="${order._id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </td>
+      `;
+      ordersTableBody.appendChild(row);
+    });
+  }
+
+  function renderOrdersPagination(total, totalPages, page) {
+    if (!ordersPaginationContainer) return;
+
+    const startItem = (page - 1) * ordersLimit + 1;
+    const endItem = Math.min(page * ordersLimit, total);
+
+    let pageButtonsHTML = '';
+    const prevDisabled = page === 1 ? 'disabled' : '';
+    pageButtonsHTML += `
+      <button class="pagination-btn" id="orders-prev" ${prevDisabled}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <span>Prev</span>
+      </button>
+    `;
+
+    for (let i = 1; i <= totalPages; i++) {
+      const activeClass = i === page ? 'active' : '';
+      pageButtonsHTML += `<button class="pagination-btn orders-page-num ${activeClass}" data-page="${i}">${i}</button>`;
+    }
+
+    const nextDisabled = page === totalPages ? 'disabled' : '';
+    pageButtonsHTML += `
+      <button class="pagination-btn" id="orders-next" ${nextDisabled}>
+        <span>Next</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    `;
+
+    ordersPaginationContainer.innerHTML = `
+      <span class="pagination-info">Showing <strong>${startItem}-${endItem}</strong> of <strong>${total}</strong> orders</span>
+      <div class="pagination-buttons">
+        ${pageButtonsHTML}
+      </div>
+    `;
+
+    const prevBtn = document.getElementById('orders-prev');
+    if (prevBtn && page > 1) {
+      prevBtn.addEventListener('click', () => {
+        currentOrdersPage--;
+        fetchOrders();
+      });
+    }
+
+    const nextBtn = document.getElementById('orders-next');
+    if (nextBtn && page < totalPages) {
+      nextBtn.addEventListener('click', () => {
+        currentOrdersPage++;
+        fetchOrders();
+      });
+    }
+
+    const numBtns = ordersPaginationContainer.querySelectorAll('.orders-page-num');
+    numBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pageNum = parseInt(btn.getAttribute('data-page'), 10);
+        if (pageNum !== currentOrdersPage) {
+          currentOrdersPage = pageNum;
+          fetchOrders();
+        }
+      });
+    });
+  }
+
+  // Debounced Search Input for Orders
+  if (orderSearchInput) {
+    orderSearchInput.addEventListener('input', (e) => {
+      clearTimeout(ordersSearchTimeout);
+      const query = e.target.value.trim();
+      ordersSearchTimeout = setTimeout(() => {
+        ordersSearchQuery = query;
+        currentOrdersPage = 1;
+        fetchOrders();
+      }, 300);
+    });
+  }
+
+  // Status Filter Select for Orders
+  if (orderStatusFilterSelect) {
+    orderStatusFilterSelect.addEventListener('change', (e) => {
+      ordersStatusFilter = e.target.value;
+      currentOrdersPage = 1;
+      fetchOrders();
+    });
+  }
+
+  // --- Order Details Modal Handlers ---
+  window.openOrderDetailsModal = function(orderId) {
+    const order = loadedOrders.find(o => o._id === orderId);
+    if (!order) return;
+
+    currentDetailOrderId = orderId;
+
+    // Populate Customer info
+    document.getElementById('detail-customer-name').textContent = order.user ? order.user.name : 'Guest';
+    document.getElementById('detail-customer-email').textContent = order.user ? order.user.email : '-';
+    document.getElementById('detail-customer-phone').textContent = order.phone || '-';
+    document.getElementById('detail-customer-notes').textContent = order.notes || 'None';
+
+    // Populate Shipping snapshot
+    const addr = order.shippingAddress;
+    document.getElementById('detail-shipping-name').textContent = addr.fullName || '-';
+    document.getElementById('detail-shipping-line1').textContent = addr.addressLine1 || '-';
+    document.getElementById('detail-shipping-line2').textContent = addr.addressLine2 || '';
+    document.getElementById('detail-shipping-city').textContent = addr.city || '-';
+    document.getElementById('detail-shipping-state').textContent = addr.state || '-';
+    document.getElementById('detail-shipping-pincode').textContent = addr.pincode || '-';
+    document.getElementById('detail-shipping-country').textContent = addr.country || 'India';
+
+    // Populate Payment details
+    document.getElementById('detail-payment-method').textContent = order.paymentMethod;
+    const priceFormatted = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR'
+    }).format(order.totalAmount);
+    document.getElementById('detail-total-amount').textContent = priceFormatted;
+    document.getElementById('detail-payment-status').value = order.paymentStatus;
+
+    // Populate Status Select
+    document.getElementById('detail-order-status').value = order.orderStatus;
+
+    // Populate Item summary rows
+    const itemsBody = document.getElementById('detail-items-body');
+    itemsBody.innerHTML = '';
+    order.items.forEach(item => {
+      const itemImg = item.image ? `../${item.image}` : '../assets/images/placeholder.png';
+      const itemTotal = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR'
+      }).format(item.price * item.quantity);
+
+      const itemRow = document.createElement('tr');
+      itemRow.innerHTML = `
+        <td><img src="${itemImg}" alt="${item.name}" class="product-table-img" onerror="this.src='../assets/images/placeholder.png'"></td>
+        <td>${item.name}</td>
+        <td>${item.sku || '-'}</td>
+        <td>₹${item.price}</td>
+        <td>${item.quantity}</td>
+        <td class="text-right font-bold">${itemTotal}</td>
+      `;
+      itemsBody.appendChild(itemRow);
+    });
+
+    if (orderDetailsModal) orderDetailsModal.classList.add('open');
+    document.body.classList.add('no-scroll');
+  };
+
+  window.closeOrderDetailsModal = function() {
+    currentDetailOrderId = null;
+    if (orderDetailsModal) orderDetailsModal.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  };
+
+  // Bind Actions on Table row click (View details buttons)
+  if (ordersTableBody) {
+    ordersTableBody.addEventListener('click', (e) => {
+      const detailBtn = e.target.closest('.view-order-btn');
+      if (detailBtn) {
+        const orderId = detailBtn.getAttribute('data-id');
+        window.openOrderDetailsModal(orderId);
+      }
+    });
+  }
+
+  // Bind details modal close actions
+  const closeOrderModalBtn = document.getElementById('btn-close-order-modal');
+  const cancelOrderModalBtn = document.getElementById('btn-cancel-order-modal');
+  if (closeOrderModalBtn) {
+    closeOrderModalBtn.addEventListener('click', window.closeOrderDetailsModal);
+  }
+  if (cancelOrderModalBtn) {
+    cancelOrderModalBtn.addEventListener('click', window.closeOrderDetailsModal);
+  }
+  if (orderDetailsModal) {
+    orderDetailsModal.addEventListener('click', (e) => {
+      if (e.target === orderDetailsModal) {
+        window.closeOrderDetailsModal();
+      }
+    });
+  }
+
+  // ESC key listener to close details modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (orderDetailsModal && orderDetailsModal.classList.contains('open')) {
+        window.closeOrderDetailsModal();
+      }
+    }
+  });
+
+  // Handle Save Status Updates click
+  const saveOrderStatusBtn = document.getElementById('btn-save-order-status');
+  if (saveOrderStatusBtn) {
+    saveOrderStatusBtn.addEventListener('click', async () => {
+      if (!currentDetailOrderId) return;
+
+      const orderStatus = document.getElementById('detail-order-status').value;
+      const paymentStatus = document.getElementById('detail-payment-status').value;
+
+      const originalText = saveOrderStatusBtn.textContent;
+      saveOrderStatusBtn.disabled = true;
+      saveOrderStatusBtn.textContent = 'Saving...';
+
+      try {
+        const token = localStorage.getItem('accessToken');
+        const response = await fetch(`http://localhost:5001/api/v1/admin/orders/${currentDetailOrderId}/status`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ orderStatus, paymentStatus })
+        });
+
+        const resData = await response.json();
+        if (!response.ok) {
+          throw new Error(resData.message || 'Failed to update order status.');
+        }
+
+        window.showToast('Order status updated successfully!', 'success');
+        window.closeOrderDetailsModal();
+        
+        // Refresh appropriate view list
+        await fetchOrders();
+        
+        // Refresh dashboard overview counters if they exist
+        fetchDashboardStats();
+      } catch (err) {
+        console.error('Order status update failed:', err);
+        window.showToast(err.message || 'Failed to update status.', 'error');
+      } finally {
+        saveOrderStatusBtn.disabled = false;
+        saveOrderStatusBtn.textContent = originalText;
+      }
+    });
+  }
+
+  // --- Dynamic Recent Orders overview loader ---
+  async function fetchRecentOrders() {
+    const tbody = document.getElementById('recent-orders-table-body');
+    if (!tbody) return;
+
+    try {
+      const token = localStorage.getItem('accessToken');
+      const response = await fetch('http://localhost:5001/api/v1/admin/orders?page=1&limit=5', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      const resData = await response.json();
+      if (!response.ok) {
+        throw new Error(resData.message || 'Failed to fetch recent orders.');
+      }
+
+      const orders = resData.data.orders;
+      
+      // Update loadedOrders cache so modal details load correctly
+      orders.forEach(o => {
+        if (!loadedOrders.some(lo => lo._id === o._id)) {
+          loadedOrders.push(o);
+        }
+      });
+
+      tbody.innerHTML = '';
+      orders.forEach(order => {
+        let orderStatusClass = 'badge';
+        if (order.orderStatus === 'placed') orderStatusClass += ' status-pending';
+        else if (order.orderStatus === 'confirmed' || order.orderStatus === 'processing') orderStatusClass += ' status-pending';
+        else if (order.orderStatus === 'shipped' || order.orderStatus === 'delivered') orderStatusClass += ' status-delivered';
+        else if (order.orderStatus === 'cancelled') orderStatusClass += ' status-cancelled';
+
+        const customerName = order.user ? order.user.name : 'Guest';
+        const customerEmail = order.user ? order.user.email : '';
+        
+        const dateFormatted = new Date(order.createdAt).toLocaleDateString('en-IN', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+
+        const priceFormatted = new Intl.NumberFormat('en-IN', {
+          style: 'currency',
+          currency: 'INR',
+          maximumFractionDigits: 2
+        }).format(order.totalAmount);
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="font-mono font-bold">${order.orderId}</td>
+          <td>
+            <div class="customer-cell">
+              <div class="customer-avatar">${customerName.substring(0, 2).toUpperCase()}</div>
+              <div>
+                <span class="customer-name">${customerName}</span>
+                <span class="customer-email">${customerEmail}</span>
+              </div>
+            </div>
+          </td>
+          <td class="font-bold">${priceFormatted}</td>
+          <td><span class="${orderStatusClass}">${order.orderStatus}</span></td>
+          <td>${dateFormatted}</td>
+          <td class="text-right">
+            <button class="action-btn view-order-btn" aria-label="View Details" data-id="${order._id}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    } catch (err) {
+      console.error('Error loading recent orders:', err);
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" class="text-center" style="color: var(--danger); font-weight: 500; padding: 24px;">
+            Failed to load recent orders.
+          </td>
+        </tr>
+      `;
+    }
+  }
+
+  // Bind Actions on Recent Orders Table click
+  const recentOrdersTbody = document.getElementById('recent-orders-table-body');
+  if (recentOrdersTbody) {
+    recentOrdersTbody.addEventListener('click', (e) => {
+      const detailBtn = e.target.closest('.view-order-btn');
+      if (detailBtn) {
+        const orderId = detailBtn.getAttribute('data-id');
+        window.openOrderDetailsModal(orderId);
+      }
+    });
+  }
+
+  // Bind "View All Orders" Overview button
+  const viewAllOrdersBtn = document.getElementById('view-all-orders-btn');
+  if (viewAllOrdersBtn) {
+    viewAllOrdersBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const ordersMenuEl = document.querySelector('.sidebar-menu .menu-item[data-view="orders"]');
+      if (ordersMenuEl) {
+        ordersMenuEl.click();
+      }
+    });
+  }
+
 });
 

@@ -10,4 +10,10 @@ router.use(protect, restrictTo('admin'));
 // GET /api/v1/admin/stats
 router.get('/stats', adminController.getDashboardStats);
 
+// GET /api/v1/admin/orders
+router.get('/orders', adminController.getAdminOrders);
+
+// PATCH /api/v1/admin/orders/:id/status
+router.patch('/orders/:id/status', adminController.updateAdminOrderStatus);
+
 module.exports = router;
