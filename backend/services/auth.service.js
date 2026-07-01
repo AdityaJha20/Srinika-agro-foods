@@ -19,7 +19,7 @@ const generateRefreshToken = (user) => {
 };
 
 const register = async (userData) => {
-  const { name, email, password, role } = userData;
+  const { name, email, password } = userData;
 
   if (!name || !email || !password) {
     throw new AppError('Please provide name, email, and password', 400);
@@ -34,7 +34,7 @@ const register = async (userData) => {
     name,
     email,
     password,
-    role
+    role: 'customer'
   });
 
   // Exclude password from response object

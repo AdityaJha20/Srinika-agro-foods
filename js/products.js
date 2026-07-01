@@ -463,9 +463,19 @@ const products = [
   }
 ];
 
+// Keep both _id and sku in all product mappings
+products.forEach(p => {
+  p._id = p.id;
+  p.sku = p.id;
+});
+
 // Helper functions for product management
-function getProductById(id) {
-  return products.find(p => p.id === id);
+function getProductById(idOrId) {
+  if (typeof window !== 'undefined' && window.products) {
+    const found = window.products.find(p => p._id === idOrId || p.sku === idOrId || p.id === idOrId);
+    if (found) return found;
+  }
+  return products.find(p => p._id === idOrId || p.sku === idOrId || p.id === idOrId);
 }
 
 function getProductsByCategory(category) {

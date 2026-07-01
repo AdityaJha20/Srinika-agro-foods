@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mamafarm | Admin Dashboard</title>
+  <meta name="description" content="Mamafarm Srinika Agro Foods - Administrator Operations Dashboard">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="js/admin-auth.js"></script>
+</head>
+<body>
+
+  <!-- Sidebar Overlay for Mobile/Tablet -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="admin-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="sidebar-brand">
+        <img src="../assets/images/logo.png" alt="Mamafarm Logo" class="brand-logo" onerror="this.style.display='none'">
+        <div class="brand-details">
+          <span class="brand-name">Mamafarm</span>
+          <span class="brand-sub">Srinika Agro Foods</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="#" class="menu-item active" data-view="dashboard">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-view="products">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              <span>Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-view="categories">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-view="orders">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <span>Orders</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-view="customers">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span>Customers</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-view="coupons">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+              <span>Coupons</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-view="analytics">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              <span>Analytics</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-view="settings">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="admin-logout-btn" class="logout-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="main-wrapper">
+      <!-- TOP HEADER -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Sidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="breadcrumb-container">
+            <h2 class="page-title" id="breadcrumb-page-title">Overview</h2>
+            <div class="breadcrumbs">
+              <span>Admin</span>
+              <span class="separator">/</span>
+              <span class="current" id="breadcrumb-current-view">Dashboard</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Search UI Placeholder -->
+          <div class="header-search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" placeholder="Search report, order, customer..." readonly>
+          </div>
+
+          <!-- Notification Bell Placeholder -->
+          <button class="icon-btn notification-btn" aria-label="Notifications">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span class="badge"></span>
+          </button>
+
+          <!-- Profile Info Widget -->
+          <div class="profile-widget">
+            <div class="profile-avatar">A</div>
+            <div class="profile-info">
+              <span class="profile-name" id="admin-profile-name">Admin User</span>
+              <span class="profile-role">Administrator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT (DASHBOARD VIEW) -->
+      <main class="page-content" id="dashboard-view">
+        <!-- Statistics Grid -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon icon-products">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Total Products</span>
+              <span class="stat-value" id="stat-total-products">125</span>
+              <span class="stat-desc">Active catalog items</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-orders">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Total Orders</span>
+              <span class="stat-value" id="stat-total-orders">48</span>
+              <span class="stat-desc">Lifetime orders placed</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-customers">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Total Customers</span>
+              <span class="stat-value" id="stat-total-customers">327</span>
+              <span class="stat-desc">Registered profiles</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-revenue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Revenue</span>
+              <span class="stat-value" id="stat-total-revenue">₹54,800</span>
+              <span class="stat-desc">Total sales volume</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon icon-pending">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Pending Orders</span>
+              <span class="stat-value" id="stat-pending-orders">12</span>
+              <span class="stat-desc">Awaiting confirmations</span>
+            </div>
+          </div>
+
+          <div class="stat-card card-alert">
+            <div class="stat-icon icon-alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Low Stock Products</span>
+              <span class="stat-value text-alert" id="stat-low-stock">3</span>
+              <span class="stat-desc">Require inventory replenishment</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recent Orders Table Section -->
+        <section class="table-section">
+          <div class="table-header">
+            <h3 class="table-section-title">Recent Orders</h3>
+            <a href="#" class="view-all-btn">
+              <span>View All Orders</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <div class="table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-mono font-bold">SAF-KLU839-8D</td>
+                  <td>
+                    <div class="customer-cell">
+                      <div class="customer-avatar">RK</div>
+                      <div>
+                        <span class="customer-name">Rajesh Kumar</span>
+                        <span class="customer-email">rajesh.kumar@gmail.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="font-bold">₹1,249.00</td>
+                  <td><span class="badge status-pending">Pending</span></td>
+                  <td>June 29, 2026</td>
+                  <td class="text-right">
+                    <button class="action-btn" aria-label="View Details" disabled>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-mono font-bold">SAF-PLO219-4A</td>
+                  <td>
+                    <div class="customer-cell">
+                      <div class="customer-avatar">AS</div>
+                      <div>
+                        <span class="customer-name">Anjali Sharma</span>
+                        <span class="customer-email">anjali.sharma@yahoo.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="font-bold">₹799.00</td>
+                  <td><span class="badge status-processing">Processing</span></td>
+                  <td>June 28, 2026</td>
+                  <td class="text-right">
+                    <button class="action-btn" aria-label="View Details" disabled>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-mono font-bold">SAF-WQE894-3Q</td>
+                  <td>
+                    <div class="customer-cell">
+                      <div class="customer-avatar text-success bg-success-light">VB</div>
+                      <div>
+                        <span class="customer-name">Vikram Bhardwaj</span>
+                        <span class="customer-email">vikram.b@outlook.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="font-bold">₹2,499.00</td>
+                  <td><span class="badge status-delivered">Delivered</span></td>
+                  <td>June 28, 2026</td>
+                  <td class="text-right">
+                    <button class="action-btn" aria-label="View Details" disabled>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-mono font-bold">SAF-ZXV329-9F</td>
+                  <td>
+                    <div class="customer-cell">
+                      <div class="customer-avatar text-danger bg-danger-light">PS</div>
+                      <div>
+                        <span class="customer-name">Pooja Singh</span>
+                        <span class="customer-email">pooja.singh@gmail.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="font-bold">₹449.00</td>
+                  <td><span class="badge status-cancelled">Cancelled</span></td>
+                  <td>June 27, 2026</td>
+                  <td class="text-right">
+                    <button class="action-btn" aria-label="View Details" disabled>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-mono font-bold">SAF-NMH873-1C</td>
+                  <td>
+                    <div class="customer-cell">
+                      <div class="customer-avatar">AM</div>
+                      <div>
+                        <span class="customer-name">Amit Mishra</span>
+                        <span class="customer-email">amit.mishra@gmail.com</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="font-bold">₹1,899.00</td>
+                  <td><span class="badge status-delivered">Delivered</span></td>
+                  <td>June 26, 2026</td>
+                  <td class="text-right">
+                    <button class="action-btn" aria-label="View Details" disabled>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <!-- PAGE CONTENT (PRODUCTS VIEW) -->
+      <main class="page-content" id="products-view" style="display: none;">
+        <div class="view-header">
+          <h3 class="view-title">Products Management</h3>
+          <div class="view-actions">
+            <!-- Placeholders for future CRUD -->
+            <button class="btn-add-product" id="btn-open-add-modal">+ Add Product</button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="filter-bar">
+          <div class="search-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="product-search" placeholder="Search product by name or SKU...">
+          </div>
+          <div class="filter-group">
+            <label for="category-filter">Category:</label>
+            <select id="category-filter" disabled>
+              <option value="">Categories Unavailable</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Products Table Section -->
+        <section class="table-section">
+          <div class="table-container">
+            <table class="admin-table" id="products-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Featured</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body">
+                <!-- Dynamically Populated Rows -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Controls -->
+          <div class="pagination-wrapper" id="products-pagination">
+            <!-- Dynamically Populated Pagination Info & Buttons -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Product Modal -->
+  <div id="add-product-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Product</h3>
+        <button id="btn-close-modal" class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="add-product-form" class="modal-form">
+        <div class="modal-body">
+          <!-- Basic Information Group -->
+          <div class="form-section-title">Basic Information</div>
+          <div class="form-group">
+            <label for="prod-name" class="form-label">Product Name *</label>
+            <input type="text" id="prod-name" class="form-input" required placeholder="e.g. Organic Rose Petal Honey">
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="prod-sku" class="form-label">SKU *</label>
+              <input type="text" id="prod-sku" class="form-input" required placeholder="e.g. rose-petal-honey">
+            </div>
+            <div class="form-group">
+              <label for="prod-category" class="form-label">Category *</label>
+              <select id="prod-category" class="form-input" required>
+                <option value="">Select Category</option>
+                <option value="Honey">Honey</option>
+                <option value="Pickles">Pickles</option>
+                <option value="Chutneys">Chutneys</option>
+                <option value="Spices">Spices</option>
+                <option value="Papad">Papad</option>
+                <option value="Masala">Masala</option>
+                <option value="Dry Fruits">Dry Fruits</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="prod-description" class="form-label">Description *</label>
+            <textarea id="prod-description" class="form-input textarea-field" required placeholder="Describe the product details, benefits, and specifications..."></textarea>
+          </div>
+
+          <!-- Pricing & Inventory Group -->
+          <div class="form-section-title">Pricing & Inventory</div>
+          <div class="form-grid-three">
+            <div class="form-group">
+              <label for="prod-price" class="form-label">Price (₹) *</label>
+              <input type="number" id="prod-price" class="form-input" min="0" step="any" required placeholder="e.g. 399">
+            </div>
+            <div class="form-group">
+              <label for="prod-stock" class="form-label">Stock *</label>
+              <input type="number" id="prod-stock" class="form-input" min="0" required placeholder="e.g. 50">
+            </div>
+            <div class="form-group">
+              <label for="prod-weight" class="form-label">Weight</label>
+              <input type="text" id="prod-weight" class="form-input" placeholder="e.g. 250g or 1kg">
+            </div>
+          </div>
+
+          <!-- Product Status (Toggles) -->
+          <div class="form-section-title">Status & Visibility</div>
+          <div class="form-checkbox-row">
+            <label class="toggle-switch">
+              <input type="checkbox" id="prod-featured">
+              <span class="toggle-slider"></span>
+              <span class="toggle-label">Featured Product</span>
+            </label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="prod-active" checked>
+              <span class="toggle-slider"></span>
+              <span class="toggle-label">Active</span>
+            </label>
+          </div>
+
+          <!-- Product Images -->
+          <div class="form-section-title">Product Images</div>
+          <div class="form-group">
+            <label for="prod-images" class="form-label">Product Image Paths</label>
+            <textarea id="prod-images" class="form-input textarea-field-sm" placeholder="assets/images/product1.png, assets/images/product2.png"></textarea>
+            <span class="form-help">Separate multiple image paths using commas.</span>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel-modal" class="btn-secondary-custom">Cancel</button>
+          <button type="submit" id="btn-save-modal" class="btn-primary-custom">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Product Confirmation Modal -->
+  <div id="delete-product-modal" class="modal-overlay">
+    <div class="modal-container modal-container-sm">
+      <div class="modal-header">
+        <h3 class="modal-title text-danger">Delete Product</h3>
+        <button id="btn-close-delete-modal" class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body text-center" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;">
+        <div class="warning-icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="warning-icon"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </div>
+        <h4 class="delete-warning-title">Are you sure you want to permanently delete this product?</h4>
+        <p class="delete-warning-text">This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-delete-modal" class="btn-secondary-custom">Cancel</button>
+        <button type="button" id="btn-confirm-delete-modal" class="btn-danger-custom">Delete Product</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

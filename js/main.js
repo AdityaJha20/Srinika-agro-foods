@@ -250,7 +250,7 @@ function copyReferralLink() {
     input.select();
     input.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(input.value);
-    
+
     const feedback = document.getElementById('copy-feedback');
     if (feedback) {
       feedback.textContent = 'Copied to clipboard! 📋';

@@ -11,6 +11,9 @@ const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./middlewares/error.middleware');
 const authRoutes = require('./routes/auth.routes');
 const productRoutes = require('./routes/product.routes');
+const orderRoutes = require('./routes/order.routes');
+const categoryRoutes = require('./routes/category.routes');
+const adminRoutes = require('./routes/admin.routes');
 require('./models/Category');
 // Unhandled Exception Guard
 process.on('uncaughtException', (err) => {
@@ -48,6 +51,9 @@ app.get('/api/health', (req, res) => {
 });
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/admin', adminRoutes);
 // Fallback Route for Undefined Paths
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
